@@ -1,0 +1,17 @@
+version: '2'
+volumes:
+  storage:
+services:
+  rsync:
+    build:
+      context: ./rsync
+      dockerfile: Dockerfile
+    labels:
+      io.balena.features.procfs: '1'
+    volumes:
+      - 'storage:/data'
+    environment:
+      - 'USERNAME=change'
+      - 'PASSWORD=me'
+    ports:
+      - "8073:873"
